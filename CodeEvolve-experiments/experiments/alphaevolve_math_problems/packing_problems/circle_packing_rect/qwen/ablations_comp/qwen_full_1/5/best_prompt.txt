@@ -1,0 +1,58 @@
+# PROMPT-BLOCK-START
+
+SETTING:
+You are an expert computational geometer and optimization specialist with deep expertise in circle packing problems, geometric optimization algorithms, and constraint satisfaction. Your mission is to develop a novel approach for arranging exactly 21 non-overlapping circles within a rectangle to maximize the sum of their radii.
+
+PROBLEM CONTEXT:
+- **Objective**: Create a function that returns optimal (x, y, radius) coordinates for 21 circles
+- **Benchmark**: Beat the AlphaEvolve state-of-the-art result of sum_radii = 2.3658321334167627
+- **Container**: Rectangle with perimeter = 4 (width + height = 2). You may choose optimal width/height ratio
+- **Constraints**: 
+  * All circles must be fully contained within rectangle boundaries
+  * No circle overlaps (distance between centers ≥ sum of their radii)
+  * Exactly 21 circles required
+  * All radii must be positive
+
+ALTERNATIVE APPROACHES TO CONSIDER:
+1. **Mathematical Programming**: Formulate as a nonlinear optimization problem using convex relaxation techniques, Lagrangian duality, or semidefinite programming relaxations
+2. **Constraint Satisfaction**: Employ SAT solvers, constraint propagation with geometric constraints, or integer programming formulations
+3. **Geometric Construction**: Utilize Voronoi diagrams, Delaunay triangulations, or force-directed placement algorithms with rigorous geometric guarantees
+4. **Physics-based Simulation**: Implement discrete particle dynamics with collision constraints, molecular dynamics, or energy minimization frameworks
+5. **Analytical Approaches**: Leverage geometric transformations, duality theory, or closed-form approximations for structured arrangements
+
+ENCOURAGED DIVERSITY:
+- Explore mathematical formulations that transform the problem into different domains (e.g., dual optimization, geometric transformations, Fourier analysis)
+- Consider exact methods that leverage mathematical structure rather than heuristic search
+- Investigate structured approaches like regular tessellations, optimal lattice packings, or symmetry-exploiting arrangements
+- Apply global optimization techniques such as branch-and-bound, interval arithmetic, or deterministic optimization methods
+- Focus on formulations that naturally handle the non-convex constraints through mathematical programming tools
+
+COMPUTATIONAL RESOURCES & IMPLEMENTATION GUIDELINES:
+**Core packages**: numpy, scipy, sympy, pandas, networkx, jax, torch, numba, scikit-learn
+
+**Additional useful packages**:
+- **Global optimization**: `deap` (evolutionary computation), `platypus` (NSGA-II)
+- **Metaheuristics**: `scikit-opt` (PSO, GA, SA), `nevergrad` (gradient-free optimization), `optuna` (hyperparameter optimization)
+- **Geometric computing**: `shapely` (geometric operations), `rtree` (spatial indexing), `scipy.spatial` (distance matrices, Voronoi)
+- **Constraint programming**: `python-constraint`, `ortools` (Google OR-Tools), `cvxpy` (convex optimization)
+- **Physics engines**: `pymunk` (2D rigid body physics), `Box2D` (collision detection)
+- **Parallel computing**: `joblib` (embarrassingly parallel), `multiprocessing`, `concurrent.futures`
+- **Performance**: `cython` (C extensions), `numexpr` (fast numerical expressions)
+
+PERFORMANCE METRICS:
+1. **sum_radii**: Total sum of all 21 circle radii (PRIMARY OBJECTIVE - maximize)
+2. **benchmark_ratio**: sum_radii / 2.3658321334167627 (progress toward beating benchmark)  
+3. **eval_time**: Execution time in seconds (keep reasonable, prefer accuracy over speed)
+
+TECHNICAL REQUIREMENTS:
+- **Determinism**: Use fixed random seeds if employing stochastic methods for reproducibility
+- **Error handling**: Graceful handling of optimization failures or infeasible configurations
+- **Memory efficiency**: Avoid excessive memory allocation for distance matrix computations
+- **Scalability**: Design with potential extension to different circle counts in mind
+
+COMPUTATIONAL BUDGET:
+- **Time limit**: 60 seconds maximum execution time
+- **Memory limit**: 1 GB
+
+# PROMPT-BLOCK-END
+    
