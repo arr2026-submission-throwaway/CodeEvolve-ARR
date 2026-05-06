@@ -1,0 +1,46 @@
+# PROMPT-BLOCK-START
+SETTING:
+You are an expert computational geometer and optimization specialist focusing on 3D point dispersion problems.
+Your task is to evolve a constructor function that generates an optimal arrangement of exactly 14 points in 3D space, maximizing the ratio of minimum distance to maximum distance between all point pairs.
+Explore diverse algorithmic strategies including: direct geometric construction based on known optimal packings, physics-inspired particle systems, evolutionary computation approaches, and mathematical programming formulations. Focus on practical implementations that work within the given computational budget.
+
+PROBLEM CONTEXT:
+- Target: Beat the current state-of-the-art benchmark of min/max ratio = 1/√4.165849767 ≈ 0.4898
+- Constraint: Points must be placed in 3D Euclidean space (typically normalized to unit cube [0,1]³ or unit sphere)
+- Mathematical formulation: For points Pi = (xi, yi, zi), i = 1,...,14:
+  * Distance matrix: dij = √[(xi-xj)² + (yi-yj)² + (zi-zj)²] for all i≠j
+  * Minimum distance: dmin = min{dij : i≠j}
+  * Maximum distance: dmax = max{dij : i≠j}
+  * Objective: maximize dmin/dmax subject to spatial constraints
+- Consider exploring configurations based on known optimal packings, Platonic solids, spherical codes, or other mathematical structures as potential starting points. Focus on approaches that don't require external dependencies beyond core scientific Python libraries.
+
+PERFORMANCE METRICS:
+1. **min_max_ratio**: dmin/dmax ratio (PRIMARY OBJECTIVE - maximize)
+2. **benchmark_ratio**: min_max_ratio / 0.4898 (progress toward beating AlphaEvolve benchmark)
+3. **eval_time**: Execution time in seconds (balance accuracy vs. efficiency)
+
+COMPUTATIONAL RESOURCES:
+**Core packages**: numpy, scipy, sympy, pandas
+**Additional useful packages**:
+- **3D optimization**: `scipy.optimize`, `scipy.optimize.differential_evolution`, `scipy.optimize.basinhopping`
+- **3D geometric computing**: 
+  * `scipy.spatial` (3D distance matrices, ConvexHull, SphericalVoronoi)
+  * `trimesh` (3D mesh operations), `open3d` (3D data processing)
+- **Specialized 3D algorithms**: 
+  * `spherical-geometry` for spherical arrangements
+  * `quaternion` package for 3D rotations
+- **Performance**: `numba` (3D JIT compilation), `joblib`
+- **Physics-based approaches**: Consider libraries for molecular dynamics or particle system simulations
+
+TECHNICAL REQUIREMENTS:
+- **Reproducibility**: Fixed random seeds for all stochastic components  
+- **Exploration Strategy**: Employ diverse approaches including deterministic geometric constructions, gradient-free optimization methods, and hybrid techniques to escape local optima. Prioritize methods that can be implemented without external dependencies.
+- **Alternative Techniques**: Consider non-gradient methods like differential evolution, basin-hopping, or simulated annealing. Explore mathematical programming formulations or direct construction from known optimal configurations. Prefer methods that can be implemented with pure scipy/numpy stack.
+
+COMPUTATIONAL BUDGET:
+- **Time limit**: 60 seconds maximum execution time
+- **Memory limit**: 1 GB
+- **Efficiency focus**: Prioritize algorithms with lower computational complexity where possible, favoring methods that can quickly converge to promising regions rather than exhaustive searches. Avoid complex libraries that introduce dependencies.
+
+# PROMPT-BLOCK-END
+    

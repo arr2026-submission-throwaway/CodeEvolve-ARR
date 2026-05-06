@@ -1,0 +1,71 @@
+# PROMPT-BLOCK-START
+SETTING:
+You are an expert computational geometer and optimization specialist focusing on 3D point dispersion problems.
+Your task is to evolve a constructor function that generates an optimal arrangement of exactly 14 points in 3D space, maximizing the ratio of minimum distance to maximum distance between all point pairs.
+Consider diverse mathematical and algorithmic approaches including:
+- Spherical codes and spherical designs for uniform point distributions
+- Rigorous optimization using constrained nonlinear programming (e.g., scipy.optimize.minimize)
+- Geometric constructions based on Platonic solids or their generalizations
+- Multi-start strategies with different initial configurations
+- Gradient-based methods with careful handling of boundary constraints
+- Alternative optimization paradigms such as simulated annealing, particle swarm optimization, or genetic algorithms with custom crossover/mutation operators
+- Symmetry-based approaches leveraging group theory and invariant properties
+- Spectral methods or eigenvalue-based constructions for point placement
+- Direct geometric reasoning using known optimal configurations from discrete geometry
+
+PROBLEM CONTEXT:
+- Target: Beat the current state-of-the-art benchmark of min/max ratio = 1/√4.165849767 ≈ 0.4898
+- Constraint: Points must be placed in 3D Euclidean space (typically normalized to unit cube [0,1]³ or unit sphere)
+- Mathematical formulation: For points Pi = (xi, yi, zi), i = 1,...,14:
+  * Distance matrix: dij = √[(xi-xj)² + (yi-yj)² + (zi-zj)²] for all i≠j
+  * Minimum distance: dmin = min{dij : i≠j}
+  * Maximum distance: dmax = max{dij : i≠j}
+  * Objective: maximize dmin/dmax subject to spatial constraints
+
+PERFORMANCE METRICS:
+1. **min_max_ratio**: dmin/dmax ratio (PRIMARY OBJECTIVE - maximize)
+2. **benchmark_ratio**: min_max_ratio / 0.4898 (progress toward beating AlphaEvolve benchmark)
+3. **eval_time**: Execution time in seconds (balance accuracy vs. efficiency)
+
+COMPUTATIONAL RESOURCES:
+**Core packages**: numpy, scipy, sympy, pandas
+**Additional useful packages**:
+- **3D optimization**: `scipy.optimize`, `deap`, `platypus`, `pymoo` (multi-objective)
+- **3D geometric computing**: 
+  * `scipy.spatial` (3D distance matrices, ConvexHull, SphericalVoronoi)
+  * `trimesh` (3D mesh operations), `open3d` (3D data processing)
+- **Specialized 3D algorithms**: 
+  * `spherical-geometry` for spherical arrangements
+  * `quaternion` package for 3D rotations
+- **Performance**: `numba` (3D JIT compilation), `joblib`
+- **Advanced Techniques**: 
+  * Implement simulated annealing, particle swarm optimization, or genetic algorithms for global search
+  * Utilize geometric constraints and symmetry considerations with group theory applications
+  * Apply Lagrangian relaxation for constrained optimization or barrier methods
+  * Consider algebraic methods, semidefinite programming relaxations, or sum-of-squares optimizations
+  * Explore direct construction methods from discrete mathematics including finite geometries
+  * Investigate topological methods such as persistent homology for understanding point configurations
+  * Consider tensor-based approaches for high-dimensional optimization or manifold learning
+  * Implement physics-based simulations with custom force models or molecular dynamics approaches
+
+TECHNICAL REQUIREMENTS:
+- **Reproducibility**: Fixed random seeds for all stochastic components
+- **Mathematical Rigor**: Employ formal optimization theory and geometric proofs where applicable
+- **Algorithmic Diversity**: Explore at least two distinct algorithmic approaches (e.g., one deterministic, one stochastic) - consider non-traditional methods like:
+  * Constraint satisfaction with geometric reasoning or satisfiability modulo theories (SMT)
+  * Physics-based simulation approaches (e.g., repulsive force models with adaptive step sizes)
+  * Algebraic geometry methods or polynomial optimization with Groebner bases
+  * Topological or combinatorial constructions such as simplicial complexes or cell decompositions
+  * Evolutionary algorithms with custom fitness landscapes or multi-modal selection pressure
+  * Monte Carlo methods with importance sampling or variance reduction techniques
+  * Quantum-inspired optimization or quantum annealing approaches (even if simulated)
+  * Game-theoretic approaches where points compete for optimal positions
+  * Machine learning based approaches using neural networks trained on known good configurations
+- **Validation**: Include verification that the solution satisfies theoretical bounds or known optimal configurations
+
+COMPUTATIONAL BUDGET:
+- **Time limit**: 60 seconds maximum execution time
+- **Memory limit**: 1 GB
+
+# PROMPT-BLOCK-END
+    
