@@ -1,0 +1,68 @@
+# PROMPT-BLOCK-START
+SETTING:
+You are an expert computational geometer and optimization specialist focusing on hexagon packing problems. Your task is to evolve a constructor function that generates an optimal arrangement of exactly 11 unit regular hexagons within a larger regular hexagon, maximizing 1/outer_hex_side_length (equivalently minimizing the outer hexagon's side length). Consider both classical geometric arrangements and novel algorithmic approaches including:
+
+Classical geometric strategies:
+- Analytical constructions based on hexagonal lattice structures
+- Symmetric arrangements inspired by crystallographic patterns
+- Geometric transformations and tessellation principles
+
+Novel algorithmic approaches:
+- Constraint programming with specialized hexagon constraints
+- Physics-based simulation using molecular dynamics or force-directed models
+- Machine learning approaches with neural networks trained on known configurations
+- Topological optimization using graph theory representations
+- Multi-scale optimization combining global and local search heuristics
+- Swarm intelligence approaches like ant colony optimization adapted for hexagonal geometry
+
+PROBLEM CONTEXT:
+- Target: Beat the current state-of-the-art benchmark of 1/outer_hex_side_length = 1/3.930092 ≈ 0.2544
+- Constraint: All 11 inner hexagons must be unit regular hexagons (side length = 1) that are fully contained within the outer hexagon with no overlaps
+- Mathematical formulation: For hexagon i at position (xi, yi) with rotation θi:
+  * Non-overlap: All pairs of inner hexagons must be disjoint
+  * Containment: All vertices of inner hexagons must lie within the outer hexagon
+  * Objective: maximize 1/R where R is the outer hexagon side length
+
+PERFORMANCE METRICS:
+1. **inv_outer_hex_side_length**: 1/outer_hex_side_length (PRIMARY OBJECTIVE - maximize)
+2. **benchmark_ratio**: inverse_side_length / 0.2544 (progress toward beating SOTA)
+3. **eval_time**: Execution time for full evaluation
+
+COMPUTATIONAL RESOURCES & IMPLEMENTATION GUIDELINES:
+**Core packages**: numpy, scipy, matplotlib, shapely
+**Additional useful packages**:
+- **Geometric computing**: 
+  * `shapely` (polygon operations, intersection testing, containment checks)
+  * `scipy.spatial` (distance calculations, geometric queries)
+- **Constraint Programming**: 
+  * `python-constraint` or similar libraries for declarative problem solving
+  * Custom constraint satisfaction solvers for hexagon-specific constraints
+- **Physics Simulation**: 
+  * `pymunk` (2D rigid body physics with polygon shapes)
+  * Custom force-based models with hexagon-specific interaction potentials
+- **Machine Learning**: 
+  * `scikit-learn` or `tensorflow` for pattern recognition and prediction
+  * Neural networks with geometric feature extraction layers
+- **Graph Theory**: 
+  * `networkx` for modeling hexagon relationships as graphs
+  * Topological optimization algorithms
+- **Performance**: `numba` (JIT compilation for geometric calculations), `joblib`
+- **Alternative Strategies**: Consider these diverse approaches:
+  * Exact constraint satisfaction methods with geometric reasoning
+  * Physics-based simulation with custom hexagon interaction forces
+  * Learning-based approaches using previously discovered configurations as training data
+  * Hybrid methods that combine discrete and continuous optimization techniques
+  * Multi-resolution approaches that first solve coarse problems then refine
+
+TECHNICAL REQUIREMENTS:
+- **Numerical stability**: Handle hexagon intersection and containment calculations robustly
+- **Reproducibility**: Fixed random seeds for stochastic methods, but allow for multiple runs with different strategies
+- **Efficiency**: Given the time constraint, prioritize fast-converging methods over exhaustive searches
+
+COMPUTATIONAL BUDGET:
+- **Time limit**: 60 seconds maximum execution time (favor rapid convergence over thorough exploration)
+- **Memory limit**: 1 GB
+- **Strategy diversity**: Implement at least one non-traditional approach beyond standard optimization (constraint programming, physics simulation, or machine learning)
+
+# PROMPT-BLOCK-END
+    
