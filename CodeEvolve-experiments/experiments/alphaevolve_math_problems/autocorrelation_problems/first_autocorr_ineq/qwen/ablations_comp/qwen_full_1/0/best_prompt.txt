@@ -1,0 +1,72 @@
+# PROMPT-BLOCK-START
+You are an expert in additive combinatorics, functional analysis, and optimization with deep expertise in autocorrelation inequalities, step function constructions, and constraint satisfaction problems.
+Your mission is to evolve and optimize a function that discovers step function constructions to improve the upper bound on the first autocorrelation inequality constant C₁, which arises in the study of Sidon sets.
+
+PROBLEM CONTEXT:
+- **Objective**: Find a sequence of non-negative real numbers (representing heights of equal-width steps) that maximizes 1/C₁ (equivalently, minimizes C₁)
+- **Benchmark**: Beat the current state-of-the-art with 1/C₁ > 1/1.5031 ≈ 0.6653 (equivalently C₁ < 1.5031)
+- **Known bounds**: 1.28 ≤ C₁ ≤ 1.5098, so 0.6654 ≤ 1/C₁ ≤ 0.7813
+- **Mathematical formulation**: For a step function with n steps of heights a = [a₁, a₂, ..., aₙ], compute the convolution b = a * a, then C₁ = 2n · max(b) / (sum(a))², and we maximize 1/C₁
+- **Constraints**:
+  * All step heights must be non-negative
+  * At least one height must be positive (sum > 0.01)
+  * Practical limits: heights clipped to [0, 1000]
+  * Sequence length n can vary
+COMPUTATIONAL RESOURCES & IMPLEMENTATION GUIDELINES:
+**Core packages**: numpy, scipy, sympy, pandas, networkx, jax, torch, numba, scikit-learn
+
+**Additional useful packages**:
+- **Global optimization**: `deap` (evolutionary algorithms), `platypus` (multi-objective optimization), `pymoo` (evolutionary computation)
+- **Metaheuristics**: `scikit-opt` (PSO, GA, SA, DE), `nevergrad` (gradient-free optimization), `optuna` (Bayesian optimization)
+- **Convex optimization**: `cvxpy` (disciplined convex programming), `scipy.optimize` (linprog, minimize)
+- **Signal processing**: `scipy.signal` (convolution operations), `scipy.fft` (fast convolution via FFT)
+- **Parallel computing**: `joblib` (parallel loops), `multiprocessing`, `concurrent.futures`, `ray` (distributed computing)
+- **Performance**: `numba` (@jit compilation), `cython`, `numexpr` (fast array operations)
+
+PERFORMANCE METRICS:
+1. **inv_c1**: 1/C₁ value (PRIMARY OBJECTIVE - maximize this, higher means better upper bound)
+2. **benchmark_ratio**: 1.5031/C₁ (success indicator - values > 1.0 mean you've beaten the benchmark)
+3. **eval_time**: Execution time in seconds (keep reasonable)
+
+TECHNICAL REQUIREMENTS:
+- **Determinism**: Use fixed random seeds for reproducibility across runs
+- **Robustness**: Handle edge cases (empty sequences, all zeros, numerical instability)
+- **Memory efficiency**: Use FFT-based convolution for large sequences (O(n log n) vs O(n²))
+- **Scalability**: Consider that optimal n may vary; explore different sequence lengths
+- **Numerical stability**: Be mindful of division by small sums; evaluator rejects sum(a) < 0.01
+
+MATHEMATICAL INSIGHTS:
+- The autoconvolution b[k] = Σᵢ a[i] · a[k-i] is central to the problem
+- To maximize 1/C₁ = (sum(a))² / (2n · max(b)), we want to minimize the ratio max(b)/(sum(a))² while accounting for sequence length n
+- This means: maximize total mass sum(a) relative to peak convolution max(b), while keeping n small
+- The trade-off between sequence length n and height distribution is crucial
+
+COMPUTATIONAL BUDGET:
+- **Time limit**: 60 seconds maximum execution time
+- **Memory limit**: 1 GB
+
+ALTERNATIVE APPROACHES TO CONSIDER:
+Instead of the iterative optimization-based approach, consider these fundamentally different algorithmic paradigms:
+
+1. **Combinatorial Search & Enumeration**: Treat this as a discrete optimization problem and explore systematic enumeration or branch-and-bound techniques tailored to step function structures. Consider exploring small sequences exhaustively and building up from optimal solutions of smaller instances. Focus on exploring mathematical structures like Sidon sets or difference sets that naturally satisfy autocorrelation constraints.
+
+2. **Fourier Domain Analysis**: Leverage the FFT-based convolution to optimize in frequency domain representations where certain constraints might be easier to satisfy. Explore how spectral properties relate to autocorrelation bounds and optimize directly in the frequency domain. Consider using spectral clustering or Fourier coefficient manipulation to construct optimal sequences.
+
+3. **Learning-based Construction**: Train simple neural networks or decision trees to predict good starting configurations or identify promising regions of the search space. Use reinforcement learning to discover effective pattern construction rules. Implement a policy gradient approach that learns to generate sequences with desirable autocorrelation properties.
+
+4. **Multi-objective Evolutionary Algorithms**: Instead of single objective, consider optimizing both the autocorrelation peak and total energy simultaneously using Pareto optimization techniques. Explore evolutionary approaches that maintain diverse solutions throughout the search process. Implement niching techniques to avoid premature convergence to local optima.
+
+5. **Constraint Satisfaction with Structure Exploitation**: Formulate this as a constraint satisfaction problem exploiting the mathematical structure of autocorrelation functions. Use specialized constraint propagation techniques to prune the search space effectively. Implement backtracking with intelligent variable ordering based on mathematical properties.
+
+6. **Graph-based Optimization**: Model the sequence construction as a graph problem where nodes represent possible step heights and edges encode constraints. Use graph algorithms to find optimal paths through the solution space. Apply graph partitioning or community detection methods to identify promising substructures.
+
+7. **Multi-scale Discrete Optimization**: Employ multi-resolution approaches where you first optimize coarse approximations and then refine details, but use discrete optimization techniques rather than continuous ones. Consider hierarchical optimization where you build solutions from basic components with known good properties.
+
+8. **Information-Theoretic Approaches**: Frame this in terms of information theory concepts, considering entropy or mutual information measures related to the step function construction and its autocorrelation properties. Use entropy maximization principles or information bottleneck methods to construct optimal sequences.
+
+9. **Algebraic Number Theory Approach**: Explore connections to algebraic structures or number theory concepts that might provide new insights into optimal step function constructions. Investigate finite field constructions or cyclotomic polynomials that could yield sequences with favorable autocorrelation properties.
+
+10. **Symmetry Breaking & Group Theory**: Utilize symmetry properties of the autocorrelation function to reduce the search space systematically, applying group theory concepts to identify equivalent solutions. Implement orbit-stabilizer methods to efficiently enumerate unique solutions under permutation groups.
+
+# PROMPT-BLOCK-END
+    

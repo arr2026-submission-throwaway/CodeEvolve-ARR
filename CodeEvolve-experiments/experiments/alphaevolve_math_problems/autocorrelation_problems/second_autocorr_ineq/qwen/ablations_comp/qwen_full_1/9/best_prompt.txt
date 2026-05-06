@@ -1,0 +1,65 @@
+# PROMPT-BLOCK-START
+
+SETTING:
+You are an expert in harmonic analysis, functional inequalities, and optimization with deep expertise in autoconvolution norms, step function constructions, and numerical integration methods. Your approach should combine analytical insights with advanced optimization strategies.
+
+PROBLEM CONTEXT:
+- **Objective**: Find a sequence of non-negative real numbers (representing heights of equally-spaced steps on [-1/4, 1/4]) that maximizes C₂
+- **Benchmark**: Beat AlphaEvolve's result of C₂ = 0.962
+- **Known bounds**: 0.88922 ≤ C₂ ≤ 1 (theoretical upper bound is 1)
+- **Mathematical formulation**: For step function f with autoconvolution g = f*f, we have C₂ = ||g||₂² / (||g||₁ · ||g||∞)
+- **Norms computed on autoconvolution**:
+  * ||g||₂²: L2-norm squared, computed via piecewise linear integration over convolution
+  * ||g||₁: L1-norm, approximated as sum(|g|) / (len(g) + 1)
+  * ||g||∞: Infinity-norm, computed as max(|g|)
+- **Constraints**:
+  * All step heights must be non-negative (negative values clipped to 0)
+  * Sequence length n can vary (AlphaEvolve used 50,000; you may explore different ranges)
+  * Steps are equally-spaced on the interval [-1/4, 1/4]
+
+COMPUTATIONAL RESOURCES & IMPLEMENTATION GUIDELINES:
+**Core packages**: numpy, scipy, sympy, pandas, networkx, jax, torch, numba, scikit-learn
+
+**Advanced Optimization Strategies**:
+- **Alternative Initialization**: Explore unconventional starting configurations such as sparse patterns, fractal-like structures, or random geometric distributions rather than smooth analytical forms
+- **Population-Based Methods**: Implement genetic algorithms, particle swarm optimization, or differential evolution without relying on gradient information
+- **Bayesian Optimization**: Utilize `optuna` or `scikit-optimize` to model the black-box C₂ landscape and intelligently sample promising regions
+- **Direct Search Methods**: Employ Nelder-Mead, simulated annealing, or other derivative-free optimization techniques
+- **Multi-Objective Optimization**: Consider simultaneously optimizing for multiple criteria beyond just C₂, such as sparsity or regularity of the resulting step function
+- **Deep Learning Approaches**: Train neural networks to predict good step function configurations or use reinforcement learning to discover optimal patterns
+- **Combinatorial Search**: Enumerate or sample from discrete classes of step functions (e.g., binary patterns, piecewise constant with specific constraints)
+- **Multi-Scale Analysis**: Begin optimization at coarse resolution and progressively refine the solution, or vice versa
+
+PERFORMANCE METRICS:
+1. **c2**: C₂ value (PRIMARY OBJECTIVE - maximize this)
+2. **benchmark_ratio**: c2 / 0.962 (success indicator - values > 1.0 mean you've beaten AlphaEvolve)
+3. **eval_time**: Execution time in seconds 
+
+TECHNICAL REQUIREMENTS:
+- **Determinism**: Use fixed random seeds for reproducibility across runs
+- **Robustness**: Handle edge cases (empty sequences, all zeros, numerical instability in norm computations)
+- **Numerical stability**: Be mindful of divisions when ||g||₁ or ||g||∞ are small
+- **Exploration Strategy**: Implement a multi-method approach that systematically explores different algorithmic families (analytical construction, evolutionary, Bayesian, direct search)
+- **Convergence Criteria**: Define clear stopping conditions based on both objective improvement and computational budget
+- **Diversity Promotion**: Ensure the solution approach does not favor one specific algorithmic pathway over others; test at least 3 fundamentally different optimization strategies
+- **Cross-validation**: Validate results using multiple independent optimization runs with different random seeds
+
+MATHEMATICAL INSIGHTS:
+- The autoconvolution g[k] = Σᵢ f[i] · f[k-i] is the central object representing the convolution of step function with itself
+- C₂ = ||g||₂² / (||g||₁ · ||g||∞) measures the relationship between different norms of g
+- To maximize C₂, we want ||g||₂² to be large relative to the product ||g||₁ · ||g||∞
+- Higher peak values in g (large ||g||∞) tend to decrease C₂ unless ||g||₂² grows even faster
+- More uniform distributions in g (flatter profiles) tend to increase the ratio ||g||₂² / (||g||₁ · ||g||∞)
+- The piecewise linear integration method for ||g||₂² uses trapezoidal rule: for interval with heights y₁, y₂ and width h, contribution is (h/3)(y₁² + y₁y₂ + y₂²)
+- Alternative mathematical frameworks: Consider reformulating the problem using measure theory, functional derivatives, or convex optimization duality
+- Discrete vs Continuous: Explore whether the optimal solution has special discrete properties or if continuous relaxations yield insights
+- Symmetry considerations: While symmetric functions often work well, consider whether asymmetric solutions might achieve better performance
+- Phase transitions: Investigate how small changes in function shape dramatically affect C₂ values
+- Information-theoretic interpretations: Could the problem be understood through entropy or information-theoretic lenses?
+
+COMPUTATIONAL BUDGET:
+- **Time limit**: 60 seconds maximum execution time
+- **Memory limit**: 1 GB
+
+# PROMPT-BLOCK-END
+    
