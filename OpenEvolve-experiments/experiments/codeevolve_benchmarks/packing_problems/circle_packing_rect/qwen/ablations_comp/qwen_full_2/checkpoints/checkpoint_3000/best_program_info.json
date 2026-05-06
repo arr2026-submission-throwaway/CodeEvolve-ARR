@@ -1,0 +1,14 @@
+{
+  "id": "c93a2cc3-a654-48de-b152-53ef87944eb5",
+  "generation": 11,
+  "iteration": 2863,
+  "current_iteration": 3000,
+  "metrics": {
+    "combined_score": 0.9997022561212233,
+    "radii_sum": 2.3651277213808246,
+    "eval_time": 51.07603478431702
+  },
+  "language": "python",
+  "timestamp": 1770935102.9153347,
+  "saved_at": 1770936757.4850523
+}
